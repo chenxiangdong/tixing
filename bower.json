@@ -1,0 +1,18 @@
+{
+  "name": "tx",
+  "authors": [
+    "chenxiangdong <1425345959@qq.com>"
+  ],
+  "description": "",
+  "main": "",
+  "license": "MIT",
+  "homepage": "",
+  "private": true,
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ]
+}

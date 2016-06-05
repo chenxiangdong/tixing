@@ -1,0 +1,82 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<html lang="en" ng-app="tx">
+<head>
+  <meta http-equiv="Content-Type" content="text/html;charset=UTF-8">
+  <title>提醒事项</title>
+</head>
+<link rel="stylesheet" href="./css/index.css">
+<body ng-controller="nav">
+  <div class="left">
+    <div class="head">
+      <div class="icon"></div>
+      <span>提醒事项</span>
+      <i ng-click="add()">+</i>
+    </div>
+    <div class="yijihua">
+      <a href="#">已计划</a>
+    </div>
+    <ul class="liebiao">
+      <li ng-click="xuanzhong($index)" ng-repeat="v in lists">
+        <div class="lb_k" ng-class="{'{{v.border}}':v===li}">
+          <div ng-class="v.color"></div>
+        </div>
+        <input type="text" ng-model="v.name" value="v.name">
+      </li>
+    </ul>
+  </div>
+  <div class="right">
+    <div class="top">
+      <input type="text" value="搜索所有提醒">
+    </div>
+    <div class="biaoti">
+      <span ng-class="li.color+'-text'">{{li.name}}</span>
+      <!-- 选择颜色 删除 -->
+      <span ng-class="li.text" ng-init="toggle=false" ng-click="toggle=!toggle">选项</span>
+      <div class="xuanze" ng-class="{'chuxian':toggle}">
+        <i></i>
+        <div class="nei">
+          <input type="text" ng-model="li.name" value="li.name" ng-class="li.text">
+          <p><a href="#">列表颜色</a></p>
+          <ul>
+            <li ng-repeat="v in color" ng-class="{'{{v+'-border'}}':v===li.color}" ng-click="huanse(v)">
+              <div ng-class="v"></div>
+            </li>
+          </ul>
+          <a href="#" ng-click="del(li.id)" class="del">删除</a>
+          <a href="#" ng-click="toggle=false" class="esc">取消</a>
+          <a href="#" ng-click="toggle=false" class="ent">完成</a>
+        </div>
+      </div>
+    </div>
+    <!-- 已完成的 -->
+    <ul class="yiwc">
+      <li>
+        <span>已完成:{{wancheng(li)}}项</span>
+        <a href="#" ng-class="li.text" ng-click="qingchu(li)">清除已完成事项</a>
+      </li>
+      <li class="shijian" ng-repeat="v in li.shijian" ng-show="v.zhuangtai">
+        <div class="ywc" ng-click="zhuangtai()" ng-class="li.border">
+          <div ng-class="li.color"></div>
+        </div>
+        <input type="text" ng-change="baocun()" ng-model="v.content" value="v.content">
+      </li>
+    </ul>
+    <!-- 未完成的 -->
+    <ul class="weiwc">
+      <li>
+        <span>未完成:{{weiwancheng(li)}}项</span>
+      </li>
+      <li ng-repeat="v in li.shijian" ng-show="!v.zhuangtai">
+        <div class="wwc" ng-click="zhuangtai(v)" ng-class="li.border">
+          <div></div>
+        </div>
+        <input type="text" ng-change="baocun()" ng-model="v.content" value="v.content">
+      </li>
+    </ul>
+    <div class="xin" ng-click="addnew()">新项目...</div>
+  </div>
+  <script src="./js/angular.js"></script>
+  <script src="./js/angular-animate.js"></script>
+  <script src="./js/index.js"></script>
+</body>
+</html>
