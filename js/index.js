@@ -58,6 +58,7 @@ tx.controller("nav",["$scope",function($scope){
   $scope.huanse=function(v){
     $scope.li.color=v
     $scope.li.text=v+"-text"
+    $scope.li.border=v+"-border"
     $scope.savadata()
   }
   $scope.qingchu=function(li){
