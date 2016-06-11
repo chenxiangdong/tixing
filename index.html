@@ -26,7 +26,7 @@
   </div>
   <div class="right">
     <div class="top">
-      <input type="text" value="搜索所有提醒">
+      <input type="text" value="搜索所有提醒" ng-model="search">
     </div>
     <div class="biaoti">
       <span ng-class="li.color+'-text'">{{li.name}}</span>
@@ -54,7 +54,7 @@
         <span>已完成:{{wancheng(li)}}项</span>
         <a href="#" ng-class="li.text" ng-click="qingchu(li)">清除已完成事项</a>
       </li>
-      <li class="shijian" ng-repeat="v in li.shijian" ng-show="v.zhuangtai">
+      <li class="shijian" ng-repeat="v in li.shijian | filter:search" ng-show="v.zhuangtai">
         <div class="ywc" ng-click="zhuangtai()" ng-class="li.border">
           <div ng-class="li.color"></div>
         </div>
@@ -66,7 +66,7 @@
       <li>
         <span>未完成:{{weiwancheng(li)}}项</span>
       </li>
-      <li ng-repeat="v in li.shijian" ng-show="!v.zhuangtai">
+      <li ng-repeat="v in li.shijian | filter:search" ng-show="!v.zhuangtai">
         <div class="wwc" ng-click="zhuangtai(v)" ng-class="li.border">
           <div></div>
         </div>
